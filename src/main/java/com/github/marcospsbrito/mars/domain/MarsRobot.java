@@ -8,6 +8,7 @@ import java.util.List;
  * Created by marcos on 15/03/18.
  */
 public abstract class MarsRobot {
+    private Orientation orientation;
     private int xPosition;
     private int yPosition;
     private Terrain terrain;
@@ -58,7 +59,20 @@ public abstract class MarsRobot {
         this.yPosition = yPosition;
     }
 
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
+
+    public List<Movement> getMovements() {
+        return movements;
+    }
+
     protected abstract List<Movement> recognizeMovements(String movements);
 
     public abstract String print();
+
 }

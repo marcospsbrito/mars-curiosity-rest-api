@@ -3,6 +3,7 @@ package com.github.marcospsbrito.mars.domain;
 import com.github.marcospsbrito.mars.domain.movements.AheadMovement;
 import com.github.marcospsbrito.mars.domain.movements.Movement;
 import com.github.marcospsbrito.mars.domain.movements.TurnLeftMovement;
+import com.github.marcospsbrito.mars.domain.movements.TurnRightMovement;
 import com.github.marcospsbrito.mars.exceptions.InvalidCommandException;
 
 import java.util.ArrayList;
@@ -12,8 +13,6 @@ import java.util.List;
  * Created by marcos on 15/03/18.
  */
 public class Curiosity extends MarsRobot{
-
-    private Orientation orientation;
 
     @Override
     protected void init() {
@@ -49,13 +48,5 @@ public class Curiosity extends MarsRobot{
     public String print() {
         //TODO
         return String.format("(s%, s%, s%)",getxPosition(),getyPosition(),getOrientation());
-    }
-
-    public Orientation getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
     }
 }
