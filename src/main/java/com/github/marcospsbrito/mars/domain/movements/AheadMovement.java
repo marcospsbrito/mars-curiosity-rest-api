@@ -1,9 +1,9 @@
 package com.github.marcospsbrito.mars.domain.movements;
 
 import com.github.marcospsbrito.mars.domain.MarsRobot;
-import com.github.marcospsbrito.mars.domain.Orientation;
+import com.github.marcospsbrito.mars.domain.Terrain;
 import com.github.marcospsbrito.mars.exceptions.InvalidCommandException;
-import com.github.marcospsbrito.mars.exceptions.InvalidPositionExceprion;
+import com.github.marcospsbrito.mars.exceptions.InvalidPositionException;
 
 /**
  * Created by marcos on 15/03/18.
@@ -11,24 +11,27 @@ import com.github.marcospsbrito.mars.exceptions.InvalidPositionExceprion;
 public class AheadMovement implements Movement {
 
     @Override
-    public void doMovement(MarsRobot robot) throws InvalidCommandException, InvalidPositionExceprion {
+    public void doMovement(MarsRobot robot, Terrain terrain) throws InvalidCommandException, InvalidPositionException {
         switch (robot.getOrientation()){
-            case E:addX(robot, 1);
-            case W:addX(robot, -1);
-            case N:addY(robot, 1);
-            case S:addY(robot, -1);
+            case E:addX(robot, 1);break;
+            case W:addX(robot, -1);break;
+            case N:addY(robot, 1);break;
+            case S:addY(robot, -1);break;
         }
-        if(robot.getxPosition()>=robot.getTerrain().getXLeght() ||
-                robot.getyPosition()>=robot.getTerrain().getyLenght()){
-            throw new InvalidPositionExceprion(robot.print());
+
+        boolean  invalidXPosition = robot.getXPosition()<0 || robot.getXPosition()>=terrain.getXLeght();
+        boolean  invalidYPosition = robot.getYPosition()<0 || robot.getYPosition()>=terrain.getyLenght();
+
+        if( invalidXPosition||invalidYPosition){
+            throw new InvalidPositionException(robot.print());
         }
     }
 
     private void addY(MarsRobot robot, int i) {
-        robot.setxPosition(robot.getyPosition()+i);
+        robot.setYPosition(robot.getYPosition()+i);
     }
 
     private void addX(MarsRobot robot, int i){
-        robot.setxPosition(robot.getxPosition()+i);
+        robot.setXPosition(robot.getXPosition()+i);
     }
 }

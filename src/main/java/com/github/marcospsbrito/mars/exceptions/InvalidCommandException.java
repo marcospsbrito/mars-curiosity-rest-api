@@ -8,6 +8,6 @@ import com.github.marcospsbrito.mars.domain.Curiosity;
 public class InvalidCommandException extends RuntimeException{
 
     public InvalidCommandException(String command){
-        super("Comando inválido: "+ command);
+        super("Invalid Command - "+ command);
     }
 }

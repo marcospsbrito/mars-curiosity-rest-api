@@ -11,7 +11,6 @@ public abstract class MarsRobot {
     private Orientation orientation;
     private int xPosition;
     private int yPosition;
-    private Terrain terrain;
     private List<Movement> movements;
 
     public MarsRobot(){
@@ -23,39 +22,27 @@ public abstract class MarsRobot {
     public void move(Terrain terrain, String movements){
         this.setMovements(recognizeMovements(movements));
         for (Movement move: this.movements) {
-            move.doMovement(this);
+            move.doMovement(this,terrain);
         }
-    }
-
-    public Terrain getTerrain() {
-        return terrain;
-    }
-
-    public void setTerrain(Terrain terrain) {
-        this.terrain = terrain;
-    }
-
-    public List<Movement> getMoviments() {
-        return movements;
     }
 
     public void setMovements(List<Movement> movements) {
         this.movements = movements;
     }
 
-    public int getxPosition() {
+    public int getXPosition() {
         return xPosition;
     }
 
-    public void setxPosition(int xPosition) {
+    public void setXPosition(int xPosition) {
         this.xPosition = xPosition;
     }
 
-    public int getyPosition() {
+    public int getYPosition() {
         return yPosition;
     }
 
-    public void setyPosition(int yPosition) {
+    public void setYPosition(int yPosition) {
         this.yPosition = yPosition;
     }
 
@@ -65,10 +52,6 @@ public abstract class MarsRobot {
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
-    }
-
-    public List<Movement> getMovements() {
-        return movements;
     }
 
     protected abstract List<Movement> recognizeMovements(String movements);

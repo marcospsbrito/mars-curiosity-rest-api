@@ -16,13 +16,15 @@ public class Curiosity extends MarsRobot{
 
     @Override
     protected void init() {
-        this.setxPosition(0);
-        this.setyPosition(0);
+        this.setXPosition(0);
+        this.setYPosition(0);
+        this.setOrientation(Orientation.N);
     }
 
     @Override
     protected List<Movement> recognizeMovements(String movements) {
-        if(!movements.toUpperCase().matches("[M|L|R]*")){
+        movements = movements.toUpperCase();
+        if(!movements.matches("[M|L|R]*")){
             throw new InvalidCommandException(movements);
         }
 
@@ -47,6 +49,6 @@ public class Curiosity extends MarsRobot{
     @Override
     public String print() {
         //TODO
-        return String.format("(s%, s%, s%)",getxPosition(),getyPosition(),getOrientation());
+        return String.format("(%s, %s, %s)",getXPosition(), getYPosition(),getOrientation());
     }
 }
